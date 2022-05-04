@@ -2,13 +2,13 @@
 #pragma GCC optimize("Ofast")
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,avx,avx2")
 #include <bits/stdc++.h>
- 
+
 using namespace std;
- 
+
 const int N = 300001;
- 
+
 int arr[N];
- 
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);

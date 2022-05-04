@@ -1,36 +1,34 @@
 #include <bits/stdc++.h>
- 
+
 using namespace std;
- 
+
 struct JiDriverSegmentTree {
     static const int T = (1 << 22);
     static const int INF = 1e9 + 7;
- 
+
     struct Node {
         int max;
         int maxCnt;
         int secondMax;
-        int sum;
- 
+        long long sum;
+
         Node():
             max(INF),
             maxCnt(1),
             secondMax(-1),
             sum(INF) {}
     } tree[T];
- 
+
     void updateWithVal(int v, int val) {
-        if (tree[v].max > val) {
-            tree[v].sum -= 1LL * (tree[v].max - val) * tree[v].maxCnt;
-            tree[v].max = val;
-        }
+        tree[v].sum -= 1LL * (tree[v].max - val) * tree[v].maxCnt;
+        tree[v].max = val;
     }
- 
+
     void pushToChildren(int v) {
         updateWithVal(2 * v, tree[v].max);
         updateWithVal(2 * v + 1, tree[v].max);
     }
- 
+
     void updateFromChildren(int v) {
         tree[v].sum = tree[2 * v].sum + tree[2 * v + 1].sum;
         tree[v].max = max(tree[2 * v].max, tree[2 * v + 1].max);
@@ -47,7 +45,7 @@ struct JiDriverSegmentTree {
             tree[v].secondMax = max(tree[v].secondMax, tree[2 * v + 1].max);
         }
     }
- 
+
     void build(int v, int l, int r, const vector<int>& inputArray) {
         if (l + 1 == r) {
             tree[v].max = inputArray[l];
@@ -61,13 +59,13 @@ struct JiDriverSegmentTree {
             updateFromChildren(v);
         }
     }
- 
+
     void build(const vector<int>& inputArray) {
         build(1, 0, inputArray.size(), inputArray);
     }
- 
+
     void update(int v, int l, int r, int ql, int qr, int val) {
-        if (qr <= l || r <= ql || tree[v].max <= val) {
+        if (qr <= l || r <= ql) {
             return;
         }
         if (ql <= l && r <= qr && tree[v].secondMax < val) {
@@ -80,8 +78,8 @@ struct JiDriverSegmentTree {
         update(2 * v + 1, mid, r, ql, qr, val);
         updateFromChildren(v);
     }
- 
-    int find(int v, int l, int r, int ql, int qr) {
+
+    long long find(int v, int l, int r, int ql, int qr) {
         if (qr <= l || r <= ql) {
             return 0;
         }
@@ -93,7 +91,7 @@ struct JiDriverSegmentTree {
         return find(2 * v, l, mid, ql, qr) + find(2 * v + 1, mid, r, ql, qr);
     }
 } segTree;
- 
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);

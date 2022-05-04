@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
- 
+
 typedef long long ll;
- 
+
 const int MAXN = 5000007;
 const ll INF = 1e9 + 7;
- 
+
 struct Node
 {
     ll max, nummax, nextmax, push, sum;
@@ -16,7 +16,7 @@ struct Node
         push(0),
         sum(0) {}
 };
- 
+
 Node tree[MAXN];
 int arr[MAXN];
   
@@ -39,9 +39,9 @@ void upd(int v)
         tree[v].nextmax = max(tree[2 * v + 1].nextmax, tree[2 * v].max);
         tree[v].nummax = tree[2 * v + 1].nummax;
     }
- 
+
 }
- 
+
 void init(int v, int l, int r)
 {
     if (r < l)
@@ -59,10 +59,10 @@ void init(int v, int l, int r)
         upd(v);
     }
 }
- 
- 
+
+
 void push1(int v, int l, int r);
- 
+
 void take(int v, int l, int r, int k)
 {  
     if (r < l || tree[v].max <= k)
@@ -75,7 +75,7 @@ void take(int v, int l, int r, int k)
         return;
     }
 }
- 
+
 void push1(int v, int l, int r)
 {
     if (r < l || tree[v].push == 0)
@@ -85,7 +85,7 @@ void push1(int v, int l, int r)
     take(2 * v + 1, mid + 1, r, tree[v].push);
     tree[v].push = 0;
 }
- 
+
 void tu(int v, int l, int r, int ql, int qr, int k)
 {
     push1(v, l, r);
@@ -101,7 +101,7 @@ void tu(int v, int l, int r, int ql, int qr, int k)
     tu(2 * v + 1, mid + 1, r, ql, qr, k);
     upd(v);
 }
- 
+
 ll tf(int v, int l, int r, int ql, int qr)
 {
     push1(v, l, r);
@@ -117,7 +117,7 @@ ll tf(int v, int l, int r, int ql, int qr)
     ll ans = tf(2 * v, l, mid, ql, qr) + tf(2 * v + 1, mid + 1, r, ql, qr);
     return ans;
 }
- 
+
 int main()
 {
     ios::sync_with_stdio(0); cin.tie(0);
