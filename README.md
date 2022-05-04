@@ -8,17 +8,17 @@
 
 Расшифровка названий папок:
 
-- `JiDriver-mineq-sum` -- папка с задачей Ji Driver Segment Tree, где есть запросы `min=` и `sum$
+- `JiDriver-mineq-sum` -- папка с задачей Ji Driver Segment Tree, где есть запросы `min=` и `sum`
 
-- `ExtendedJiDriver-mineq-pluseq-sum` -- папка с задачей Extended Ji Driver Segment Tree, где есть запросы `min=$, `+=` и `sum$
+- `ExtendedJiDriver-mineq-pluseq-sum` -- папка с задачей Extended Ji Driver Segment Tree, где есть запросы `min=`, `+=` и `sum`
 
-- `GCDJiDriver-mineq-pluseq-sum` -- папка с задачей GCD Ji Driver Segment Tree, где есть запросы `min=$, `max=$, `=$, `+=$, `sum$, `min$, `max$, `gcd$
+- `GCDJiDriver-mineq-pluseq-sum` -- папка с задачей GCD Ji Driver Segment Tree, где есть запросы `min=`, `max=`, `=`, `+=`, `sum`, `min`, `max` и `gcd`
 
-- `STB-modeq-sum` -- папка с задачей, где есть запросы `sum$, `bmod=` и `=$
+- `STB-modeq-sum` -- папка с задачей, где есть запросы `sum`, `bmod=` и `=`
 
-- `STB-sqrteq-sum` -- папка с задачей, где есть запросы `+=$, `sqrt{hspace{0.2cm}}=$, `min` и `sum$
+- `STB-sqrteq-sum` -- папка с задачей, где есть запросы `+=`, `sqrt=`, `min` и `sum`
 
-- `STB-diveq-sum` -- папка с задачей, где есть запросы `+=$, `/=$, `min` и `sum$
+- `STB-diveq-sum` -- папка с задачей, где есть запросы `+=`, `/=`, `min` и `sum`
 
 ## Генераторы тестов
 
