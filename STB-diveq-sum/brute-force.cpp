@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
- 
+
 using namespace std;
- 
+
 long long division(long long a, long long b) {
     if (a >= 0) {
         return a / b;
@@ -9,7 +9,7 @@ long long division(long long a, long long b) {
         return -((-a + b - 1) / b);
     }
 }
- 
+
 int main() {
     int n, q;
     cin >> n >> q;
