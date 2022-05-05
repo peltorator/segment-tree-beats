@@ -43,28 +43,28 @@ class ExtendedJiDriverSegmentTree {
     /* push lazy update to children of node v */
     void pushToChildren(const int v, const int l, const int r) {
         const int mid = (r + l) / 2;
-        doPushSum(2 * v, l, mid, tree[v].pushSum);
-        doPushSum(2 * v + 1, mid, r, tree[v].pushSum);
+        doPushSum(leftChild(v), l, mid, tree[v].pushSum);
+        doPushSum(rightChild(v), mid, r, tree[v].pushSum);
         tree[v].pushSum = 0;
-        updateWithVal(2 * v, tree[v].max);
-        updateWithVal(2 * v + 1, tree[v].max);
+        updateWithVal(leftChild(v), tree[v].max);
+        updateWithVal(rightChild(v), tree[v].max);
     }
 
     /* pull info from children and recalculate info for v */
     void updateFromChildren(const int v) {
-        tree[v].sum = tree[2 * v].sum + tree[2 * v + 1].sum;
-        tree[v].max = std::max(tree[2 * v].max, tree[2 * v + 1].max);
-        tree[v].secondMax = std::max(tree[2 * v].secondMax, tree[2 * v + 1].secondMax);
+        tree[v].sum = tree[leftChild(v)].sum + tree[rightChild(v)].sum;
+        tree[v].max = std::max(tree[leftChild(v)].max, tree[rightChild(v)].max);
+        tree[v].secondMax = std::max(tree[leftChild(v)].secondMax, tree[rightChild(v)].secondMax);
         tree[v].maxCnt = 0;
-        if (tree[2 * v].max == tree[v].max) {
-            tree[v].maxCnt += tree[2 * v].maxCnt;
+        if (tree[leftChild(v)].max == tree[v].max) {
+            tree[v].maxCnt += tree[leftChild(v)].maxCnt;
         } else {
-            tree[v].secondMax = std::max(tree[v].secondMax, tree[2 * v].max);
+            tree[v].secondMax = std::max(tree[v].secondMax, tree[leftChild(v)].max);
         }
-        if (tree[2 * v + 1].max == tree[v].max) {
-            tree[v].maxCnt += tree[2 * v + 1].maxCnt;
+        if (tree[rightChild(v)].max == tree[v].max) {
+            tree[v].maxCnt += tree[rightChild(v)].maxCnt;
         } else {
-            tree[v].secondMax = std::max(tree[v].secondMax, tree[2 * v + 1].max);
+            tree[v].secondMax = std::max(tree[v].secondMax, tree[rightChild(v)].max);
         }
     }
 
@@ -78,8 +78,8 @@ class ExtendedJiDriverSegmentTree {
             tree[v].sum = inputArray[l];
         } else {
             const int mid = (r + l) / 2;
-            build(2 * v, l, mid, inputArray);
-            build(2 * v + 1, mid, r, inputArray);
+            build(leftChild(v), l, mid, inputArray);
+            build(rightChild(v), mid, r, inputArray);
             updateFromChildren(v);
         }
     }
@@ -95,8 +95,8 @@ class ExtendedJiDriverSegmentTree {
         }
         pushToChildren(v, l, r);
         const int mid = (r + l) / 2;
-        updateMinEq(2 * v, l, mid, ql, qr, val);
-        updateMinEq(2 * v + 1, mid, r, ql, qr, val);
+        updateMinEq(leftChild(v), l, mid, ql, qr, val);
+        updateMinEq(rightChild(v), mid, r, ql, qr, val);
         updateFromChildren(v);
     }
 
@@ -111,8 +111,8 @@ class ExtendedJiDriverSegmentTree {
         }
         pushToChildren(v, l, r);
         const int mid = (r + l) / 2;
-        updatePlusEq(2 * v, l, mid, ql, qr, val);
-        updatePlusEq(2 * v + 1, mid, r, ql, qr, val);
+        updatePlusEq(leftChild(v), l, mid, ql, qr, val);
+        updatePlusEq(rightChild(v), mid, r, ql, qr, val);
         updateFromChildren(v);
     }
 
@@ -126,7 +126,7 @@ class ExtendedJiDriverSegmentTree {
         }
         pushToChildren(v, l, r);
         const int mid = (r + l) / 2;
-        return findSum(2 * v, l, mid, ql, qr) + findSum(2 * v + 1, mid, r, ql, qr);
+        return findSum(leftChild(v), l, mid, ql, qr) + findSum(rightChild(v), mid, r, ql, qr);
     }
 
 public:
