@@ -14,8 +14,6 @@
 
 - `GCDJiDriver-mineq-pluseq-sum` — папка с задачей GCD Ji Driver Segment Tree, где есть запросы `min=`, `max=`, `=`, `+=`, `sum`, `min`, `max` и `gcd`
 
-- `STB-modeq-sum` — папка с задачей, где есть запросы `sum`, `mod=` и `=`
-
 - `STB-sqrteq-sum` — папка с задачей, где есть запросы `+=`, `sqrt=`, `min` и `sum`
 
 - `STB-diveq-sum` — папка с задачей, где есть запросы `+=`, `/=`, `min` и `sum`
