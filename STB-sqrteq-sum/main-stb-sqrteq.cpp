@@ -15,11 +15,11 @@ class SqrtSegmentTree {
     std::vector<Node> tree;
     int n;
 
-    static int leftChild(int v) {
+    static int leftChild(const int v) {
         return 2 * v;
     }
 
-    static int rightChild(int v) {
+    static int rightChild(const int v) {
         return 2 * v + 1;
     }
 
