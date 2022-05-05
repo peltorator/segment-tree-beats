@@ -23,6 +23,7 @@ class JiDriverSegmentTree {
         return 2 * v + 1;
     }
 
+    /* apply min= val to node v */
     void updateWithVal(const int v, const int val) {
         if (tree[v].max > val) {
             tree[v].sum -= 1LL * (tree[v].max - val) * tree[v].maxCnt;
@@ -30,11 +31,13 @@ class JiDriverSegmentTree {
         }
     }
 
+    /* push lazy update to children of node v */
     void pushToChildren(const int v) {
         updateWithVal(leftChild(v), tree[v].max);
         updateWithVal(rightChild(v), tree[v].max);
     }
 
+    /* pull info from children and recalculate info for v */
     void updateFromChildren(const int v) {
         tree[v].sum = tree[leftChild(v)].sum + tree[rightChild(v)].sum;
         tree[v].max = std::max(tree[leftChild(v)].max, tree[rightChild(v)].max);
@@ -52,6 +55,7 @@ class JiDriverSegmentTree {
         }
     }
 
+    /* build segment tree according to inputArray */
     void build(const int v, const int l, const int r, const std::vector<int>& inputArray) {
         if (l + 1 == r) {
             tree[v].max = inputArray[l];
@@ -66,6 +70,7 @@ class JiDriverSegmentTree {
         }
     }
 
+    /* min= val on segment [ql, qr) */
     void updateMinEq(const int v, const int l, const int r, const int ql, const int qr, const int val) {
         if (qr <= l || r <= ql || tree[v].max <= val) {
             return;
@@ -81,6 +86,7 @@ class JiDriverSegmentTree {
         updateFromChildren(v);
     }
 
+    /* find sum on segment [ql, qr) */
     int64_t findSum(const int v, const int l, const int r, const int ql, const int qr) {
         if (qr <= l || r <= ql) {
             return 0;
