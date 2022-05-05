@@ -2,15 +2,15 @@
 #pragma GCC optimize("Ofast")
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,avx,avx2")
 #include <bits/stdc++.h>
- 
+
 using namespace std;
- 
+
 typedef long long ll;
- 
+
 const int N = 200001;
- 
+
 ll arr[N];
- 
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
